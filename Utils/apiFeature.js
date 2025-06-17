@@ -20,18 +20,13 @@ export const ChechIfWalletConnected = async () => {
 
 export const connectWallet = async () => {
   try {
-    // if (!window.ethereum) return console.log("Install MateMask");
+    // if (!window.ethereum) return console.log("Install MetaMask");
 
     // const accounts = await window.ethereum.request({
     //   method: "eth_requestAccounts",
     // });
-
-    if (!window.ethereum) return console.log("Install MetaMask");
-
-    const accounts = await window.ethereum.request({
-      method: "eth_requestAccounts",
-    });
-    const firstAccount = accounts[0];
+    // const firstAccount = accounts[0];
+    const firstAccount = '0x71be63f3384f5fb98995898a86b02fb2426c5788';
     return firstAccount;
   } catch (error) {
     console.log(error);

@@ -143,10 +143,6 @@ const NavBar = () => {
               // image={images.hero}
               // image={images.img1}
               image={images.friends}
-            
-          
-          
-      
               // video src={videos.animation}
               functionName={createAccount}
               address={account}

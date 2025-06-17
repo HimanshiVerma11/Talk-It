@@ -31,20 +31,23 @@ export const ChatAppProvider = ({ children }) => {
     try {
       //GET CONTRACT
       const contract = await connectingWithContract();
+      console.log("contract - ",contract);
       //GET ACCOUNT
       const connectAccount = await connectWallet();
+      console.log(connectAccount);
       setAccount(connectAccount);
       //GET USER NAME
-      const userName = await contract.getUsername(connectAccount);
-      setUserName(userName);
+      // const userName = await contract.getUsername(connectAccount); //error here
+      // console.log(userName);
+      // setUserName(userName);
       //GET MY FRIEND LIST
-      const friendLists = await contract.getMyFriendList();
-      setFriendLists(friendLists);
-      //GET ALL APP USER LIST
-      const userList = await contract.getAllAppUser();
-      setUserLists(userList);
+      // const friendLists = await contract.getMyFriendList();
+      // setFriendLists(friendLists);
+      // //GET ALL APP USER LIST
+      // const userList = await contract.getAllAppUser();
+      // setUserLists(userList);
     } catch (error) {
-      // setError("Please Install And Connect Your Wallet");
+      setError("Please Install And Connect Your Wallet");
       console.log(error);
     }
   };
@@ -67,7 +70,7 @@ export const ChatAppProvider = ({ children }) => {
   const createAccount = async ({ name, accountAddress }) => {
     try {
       // if (name || accountAddress)
-      //   return setError("Name And AccountAddress, cannot be emty");
+      //   return setError("Name And AccountAddress, cannot be empty");
 
       const contract = await connectingWithContract();
       const getCreatedUser = await contract.createAccount(name);
@@ -76,7 +79,7 @@ export const ChatAppProvider = ({ children }) => {
       setLoading(false);
       window.location.reload();
     } catch (error) {
-      setError("Error while creating your account Pleas reload browser");
+      setError("Error while creating your account Please reload browser!");
     }
   };
 

@@ -57,8 +57,8 @@ contract ChatApp{
     function addFriend(address friend_key, string calldata name) external{
         require(checkUserExists(msg.sender), "Create an account first");
         require(checkUserExists(friend_key), "User is not registered!");
-        require(msg.sender != friend_key, "Users cannot add themeselves as friends");
-        require(checkAlreadyFriends(msg.sender, friend_key)== false, "These users are already friends");
+        require(msg.sender != friend_key, "Users cannot add themselves as friends");
+        require(checkAlreadyFriends(msg.sender, friend_key)== false, "This user is already your friend");
 
         _addFriend(msg.sender, friend_key, name);
         _addFriend(friend_key, msg.sender, userList[msg.sender].name);
@@ -102,7 +102,7 @@ contract ChatApp{
     function sendMessage(address friend_key, string calldata _msg) external{
         require(checkUserExists(msg.sender), "Create an account first");
         require(checkUserExists(friend_key), "User is not registered");
-        require(checkAlreadyFriends(msg.sender, friend_key), "You are not friend with the given user");
+        require(checkAlreadyFriends(msg.sender, friend_key), "You are not a friend with the given user");
 
         bytes32 chatCode = _getChatCode(msg.sender, friend_key);
         message memory newMsg = message(msg.sender, block.timestamp, _msg);
